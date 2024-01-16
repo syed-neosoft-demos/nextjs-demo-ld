@@ -11,3 +11,26 @@
   color: #4d53bc;
   letter-spacing: 4px;
 }
+
+/* PAGE NOT FOUND ERROR */
+.page_404 {
+  padding: 40px 0;
+  background: #fff;
+  font-family: "Arvo", serif;
+  text-align: center;
+}
+
+.link_404 {
+  background-color: #4d53bc;
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+  margin-top: 10px;
+  width: 100px;
+}
+.contant_box_404 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
