@@ -77,6 +77,9 @@
   font-size: 18px;
   margin-top: 10px;
 }
+.loginCard a {
+  color: #2e90fa;
+}
 /* LOGIN PAGE CSS END */
 
 /* FOOTER CSS START */

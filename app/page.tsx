@@ -1,12 +1,16 @@
-import Image from "next/image";
+"use client";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import styles from "./page.module.css";
 
 export default function Home() {
+  const router = useRouter();
+  useEffect(() => {
+    router.push("/auth/login");
+  }, []);
   return (
-    <main className={styles.main}>
-      <div className={styles.center}>
-        <h5>hello from home page</h5>
-      </div>
-    </main>
+    <div className={styles.loader}>
+      <h5>Loading...</h5>
+    </div>
   );
 }

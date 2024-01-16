@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "../auth.module.css";
 
 const Login = () => {
@@ -15,6 +16,8 @@ const Login = () => {
       <div className={styles.authInput}>
         <input type="submit" value="Login" />
       </div>
+      New to app
+      <Link href="/auth/signup"> Create Account</Link>
     </div>
   );
 };

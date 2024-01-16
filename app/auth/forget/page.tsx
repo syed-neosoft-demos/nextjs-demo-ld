@@ -3,17 +3,14 @@ import styles from "../auth.module.css";
 const ForgetPassword = () => {
   return (
     <div className={styles.loginCard}>
-      <h5>Login to your account</h5>
+      <h5>Forget your password</h5>
       <div className={styles.authInput}>
         <label htmlFor="email">Email</label>
-        <input type="email" placeholder="Enter email" />
+        <input type="email" placeholder="Enter email" id="email" />
       </div>
+
       <div className={styles.authInput}>
-        <label htmlFor="password">Password</label>
-        <input type="password" placeholder="Enter password" />
-      </div>
-      <div className={styles.authInput}>
-        <input type="submit" value="Login" />
+        <input type="submit" value="Forget" />
       </div>
     </div>
   );
