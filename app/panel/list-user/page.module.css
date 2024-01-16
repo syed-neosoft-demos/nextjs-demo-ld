@@ -1,0 +1,28 @@
+.userList {
+  height: 100vh;
+  padding: 15px;
+  padding: 10px;
+}
+.userList table {
+  width: 100%;
+  background-color: #fff;
+  border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+.userList th {
+  text-align: left;
+  background-color: var(--light-black);
+  color: white;
+}
+.userList td {
+  text-align: left;
+  border-bottom: 0.5px solid gray;
+  margin-bottom: 10px;
+}
+.userList table thead {
+  font-size: 16px;
+  font-weight: 400;
+}
+.userList table tbody tr {
+  padding: 10px;
+}

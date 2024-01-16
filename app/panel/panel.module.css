@@ -1,0 +1,23 @@
+.panelContainer {
+  display: flex;
+  height: 100vh;
+}
+.panelSide {
+  flex: 0 0 200px;
+  background-color: var(--dark-gray);
+  height: 100vh;
+  color: white;
+}
+.panelMain {
+  flex-grow: 1;
+  min-height: 100vh;
+}
+
+/* FOOTER CSS START */
+.footer {
+  width: 100%;
+  background-color: var(--dark-gray);
+  color: white;
+  text-align: center;
+}
+/* FOOTER CSS END */

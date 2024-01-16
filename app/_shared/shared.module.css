@@ -1,0 +1,33 @@
+.menuContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.menuContainer ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  list-style: none;
+  font-size: 16px;
+  font-weight: 500;
+  width: 100%;
+}
+.menuContainer ul li {
+  padding: 10px 20px;
+}
+.menuContainer ul li:hover {
+  background-color: var(--light-black);
+  width: 100%;
+  cursor: pointer;
+}
+.menuContainer button {
+  width: 100%;
+  height: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  background-color: var(--light-black);
+  color: white;
+  border: 1px solid white;
+  letter-spacing: 3px;
+}
