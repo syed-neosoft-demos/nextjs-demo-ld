@@ -1,4 +1,4 @@
-import { getUser } from "@/app/_utils/api-call";
+import { getUser } from "@/src/components/utils/api-call";
 import Link from "next/link";
 import style from "./page.module.css";
 

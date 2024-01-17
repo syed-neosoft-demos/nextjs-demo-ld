@@ -1,7 +1,9 @@
-import SideMenu from "../_shared/side-menu";
+import isAuth from "../../components/routes/userAuth";
+import SideMenu from "../../components/shared/side-menu";
+import { childType } from "../../types/types";
 import style from "./panel.module.css";
 
-const layout = ({ children }: { children: React.ReactNode }) => {
+const layout = ({ children }: childType) => {
   return (
     <div className={style.panelContainer}>
       <aside className={style.panelSide}>
@@ -17,4 +19,4 @@ const layout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default layout;
+export default isAuth(layout);
