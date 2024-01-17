@@ -1,3 +1,4 @@
+import PanelHeader from "@/src/components/shared/panelHeader";
 import isAuth from "../../components/routes/userAuth";
 import SideMenu from "../../components/shared/side-menu";
 import { childType } from "../../types/types";
@@ -10,6 +11,7 @@ const layout = ({ children }: childType) => {
         <SideMenu />
       </aside>
       <main className={style.panelMain}>
+        <PanelHeader />
         {children}
         <footer className={style.footer}>
           <p>footer</p>

@@ -1,88 +1,54 @@
-const EditUser = () => {
+import { getUser } from "@/src/utils/api-call";
+
+const EditUser = async () => {
+  const res = await getUser();
   return (
-    <div className="relative overflow-x-auto shadow-md max-w-3xl m-10 rounded-sm">
-      <h2 className="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
-      <p className="mt-1 text-sm leading-6 text-gray-600">
-        Use a permanent address where you can receive mail.
-      </p>
+    <div className="relative shadow-md ml-10 mr-10 mt-5 rounded-sm">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th scope="col" className="px-6 py-3">
-              Product name
+              Id
             </th>
             <th scope="col" className="px-6 py-3">
-              Color
+              Name
             </th>
             <th scope="col" className="px-6 py-3">
-              Category
+              Username
             </th>
             <th scope="col" className="px-6 py-3">
-              Price
+              Email
             </th>
-            <th scope="col" className="px-6 py-3">
-              <span className="sr-only">Edit</span>
+            <th scope="col" className="px-6 py-3 text-right">
+              Action
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          {res?.map((el: any) => (
+            <tr
+              className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+              key={el?.id}
             >
-              Apple MacBook Pro 17"
-            </th>
-            <td className="px-6 py-4">Silver</td>
-            <td className="px-6 py-4">Laptop</td>
-            <td className="px-6 py-4">$2999</td>
-            <td className="px-6 py-4 text-right">
-              <a
-                href="#"
-                className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+              <th
+                scope="row"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
-                Edit
-              </a>
-            </td>
-          </tr>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              Microsoft Surface Pro
-            </th>
-            <td className="px-6 py-4">White</td>
-            <td className="px-6 py-4">Laptop PC</td>
-            <td className="px-6 py-4">$1999</td>
-            <td className="px-6 py-4 text-right">
-              <a
-                href="#"
-                className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-              >
-                Edit
-              </a>
-            </td>
-          </tr>
-          <tr className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              Magic Mouse 2
-            </th>
-            <td className="px-6 py-4">Black</td>
-            <td className="px-6 py-4">Accessories</td>
-            <td className="px-6 py-4">$99</td>
-            <td className="px-6 py-4 text-right">
-              <a
-                href="#"
-                className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-              >
-                Edit
-              </a>
-            </td>
-          </tr>
+                {el?.id}
+              </th>
+              <td className="px-6 py-4">{el?.name}</td>
+              <td className="px-6 py-4">{el?.username}</td>
+              <td className="px-6 py-4">{el?.email}</td>
+              <td className="px-6 py-4 text-right">
+                <a
+                  href="#"
+                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                >
+                  Edit
+                </a>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
