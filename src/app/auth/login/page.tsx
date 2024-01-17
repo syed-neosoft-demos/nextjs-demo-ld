@@ -2,14 +2,17 @@
 
 import Link from "next/link";
 import { redirect, useRouter } from "next/navigation";
+import { useState } from "react";
 import styles from "../auth.module.css";
 
 const Login = () => {
+  const [loader, setLoader] = useState(false);
   const route = useRouter();
   const token = "demo12345auth12345token";
+
   const handleLogin = () => {
-    // localStorage.setItem("auth_token", token);
-    console.log("hello");
+    setLoader(true);
+    localStorage.setItem("auth_token", token);
     route.replace("/panel/home");
   };
 
@@ -37,7 +40,7 @@ const Login = () => {
         <input type="password" placeholder="Enter password" />
       </div>
       <div className={styles.authInput}>
-        <input type="submit" value="Login" onClick={handleLogin} />
+        <input type="submit" value={loader ? "Loading..." : "Login"} onClick={handleLogin} />
       </div>
       New to app
       <Link href="/auth/signup"> Create Account</Link>

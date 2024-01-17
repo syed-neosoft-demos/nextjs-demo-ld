@@ -4,19 +4,19 @@ function SideMenu() {
   return (
     <div className={`${style.menuContainer} bg-slate-700`}>
       <ul>
-        <li>
+        <li className="hover:bg-slate-800 cursor-pointer">
           <Link href="/panel/home">Dashboard</Link>
         </li>
-        <li>
+        <li className="hover:bg-slate-800 cursor-pointer">
           <Link href="/panel/add-user">Add User</Link>
         </li>
-        <li>
+        <li className="hover:bg-slate-800 cursor-pointer">
           <Link href="/panel/edit-user">Edit User</Link>
         </li>
-        <li>
+        <li className="hover:bg-slate-800 cursor-pointer">
           <Link href="/panel/delete-user">Delete User</Link>
         </li>
-        <li>
+        <li className="hover:bg-slate-800 cursor-pointer">
           <Link href="/panel/list-user">User List</Link>
         </li>
       </ul>
