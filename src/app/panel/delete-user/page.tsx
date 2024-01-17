@@ -1,7 +1,13 @@
 import { getUser } from "@/src/utils/api-call";
 
 const DeleteUser = async () => {
-  const res = await getUser();
+  let res;
+  try {
+    res = await getUser();
+  } catch (error) {
+    console.log("error", error);
+    throw new Error("something went wrong");
+  }
   return (
     <div className="relative shadow-md ml-10 mr-10 mt-5 rounded-sm">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

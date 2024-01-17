@@ -13,9 +13,6 @@ const layout = ({ children }: childType) => {
       <main className={style.panelMain}>
         <PanelHeader />
         {children}
-        <footer className={style.footer}>
-          <p>footer</p>
-        </footer>
       </main>
     </div>
   );

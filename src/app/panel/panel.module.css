@@ -12,12 +12,3 @@
   flex-grow: 1;
   min-height: 100vh;
 }
-
-/* FOOTER CSS START */
-.footer {
-  width: 100%;
-  background-color: var(--dark-gray);
-  color: white;
-  text-align: center;
-}
-/* FOOTER CSS END */
