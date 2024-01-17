@@ -4,19 +4,6 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export default function isAuth(Component: any) {
-  // return function IsAuth(props: any) {
-  //   useLayoutEffect(() => {
-  //     // const token = localStorage.getItem("auth_token");
-  //     // console.log("token", token);
-  //     if (!userSession.isLogin) redirect("/");
-  //   }, []);
-
-  //   if (!userSession.isLogin) {
-  //     return null;
-  //   }
-
-  //   return <Component {...props} />;
-  // };
   return function IsAuth(props: any) {
     const cookieStore = cookies();
     console.log("cookieStore", cookieStore.get("auth_token"));
@@ -26,3 +13,16 @@ export default function isAuth(Component: any) {
     return <Component {...props} />;
   };
 }
+// return function IsAuth(props: any) {
+//   useLayoutEffect(() => {
+//     // const token = localStorage.getItem("auth_token");
+//     // console.log("token", token);
+//     if (!userSession.isLogin) redirect("/");
+//   }, []);
+
+//   if (!userSession.isLogin) {
+//     return null;
+//   }
+
+//   return <Component {...props} />;
+// };

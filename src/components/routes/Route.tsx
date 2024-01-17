@@ -1,7 +1,7 @@
 "use client";
 import { redirect } from "next/navigation";
 import { useLayoutEffect } from "react";
-import { childType } from "../types/types";
+import { childType } from "../../types/types";
 
 const ProtectedRoute = ({ children }: childType) => {
   useLayoutEffect(() => {

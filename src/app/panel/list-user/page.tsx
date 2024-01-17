@@ -1,4 +1,5 @@
-import { getUser } from "@/src/components/utils/api-call";
+import { DeleteButton } from "@/src/components/list-user/button";
+import { getUser } from "@/src/utils/api-call";
 import Link from "next/link";
 import style from "./page.module.css";
 
@@ -25,7 +26,9 @@ const ListUser = async () => {
               <td>{el?.name}</td>
               <td>{el?.email}</td>
               <td>{el?.website}</td>
-              <td>Delete</td>
+              <td>
+                <DeleteButton id={el?.id} />
+              </td>
               <td>
                 <Link href={`/panel/list-user/${el?.id}`}>View</Link>
               </td>

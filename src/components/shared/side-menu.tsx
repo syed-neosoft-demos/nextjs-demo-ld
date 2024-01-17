@@ -2,25 +2,22 @@ import Link from "next/link";
 import style from "./shared.module.css";
 function SideMenu() {
   return (
-    <div className={style.menuContainer}>
+    <div className={`${style.menuContainer} bg-slate-700`}>
       <ul>
         <li>
-          <Link href="/panel/home">Home</Link>
+          <Link href="/panel/home">Dashboard</Link>
         </li>
         <li>
           <Link href="/panel/add-user">Add User</Link>
         </li>
         <li>
-          <Link href="/panel/list-user">List User</Link>
+          <Link href="/panel/edit-user">Edit User</Link>
         </li>
         <li>
-          <Link href="/panel/about">About Us</Link>
+          <Link href="/panel/delete-user">Delete User</Link>
         </li>
         <li>
-          <Link href="/panel/help">Help</Link>
-        </li>
-        <li>
-          <Link href="/panel/plans">Plans</Link>
+          <Link href="/panel/list-user">User List</Link>
         </li>
       </ul>
       <button type="button">Logout</button>

@@ -1,6 +1,10 @@
-const Dashboard = () => {
+const EditUser = () => {
   return (
     <div className="relative overflow-x-auto shadow-md max-w-3xl m-10 rounded-sm">
+      <h2 className="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
+      <p className="mt-1 text-sm leading-6 text-gray-600">
+        Use a permanent address where you can receive mail.
+      </p>
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
@@ -85,4 +89,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default EditUser;

@@ -1,4 +1,4 @@
-const Dashboard = () => {
+const DeleteUser = () => {
   return (
     <div className="relative overflow-x-auto shadow-md max-w-3xl m-10 rounded-sm">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -85,4 +85,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DeleteUser;

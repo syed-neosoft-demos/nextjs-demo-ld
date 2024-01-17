@@ -1,6 +1,6 @@
+import { childType } from "@/src//types/types";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { childType } from "../components/types/types";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: childType) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-slate-200">
       <body className={inter.className}>{children}</body>
     </html>
   );
