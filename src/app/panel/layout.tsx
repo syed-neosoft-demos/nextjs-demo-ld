@@ -1,7 +1,7 @@
+import isAuth from "@/src/components/auth/userAuth";
 import PanelHeader from "@/src/components/shared/panelHeader";
-import isAuth from "../../components/routes/userAuth";
-import SideMenu from "../../components/shared/side-menu";
-import { childType } from "../../types/types";
+import SideMenu from "@/src/components/shared/side-menu";
+import { childType } from "@/src/types/types";
 import style from "./panel.module.css";
 
 const layout = ({ children }: childType) => {

@@ -1,10 +1,12 @@
-import { DeleteButton } from "@/src/components/list-user/button";
 import { getUser } from "@/src/utils/api-call";
-import Link from "next/link";
-import style from "./page.module.css";
 
-const ListUser = async () => {
-  const res = await getUser();
+const DeleteUser = async () => {
+  let res;
+  try {
+    res = await getUser();
+  } catch (error) {
+    console.log("error", error);
+  }
   return (
     <div className="relative shadow-md ml-10 mr-10 mt-5 rounded-sm">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -58,4 +60,4 @@ const ListUser = async () => {
   );
 };
 
-export default ListUser;
+export default DeleteUser;

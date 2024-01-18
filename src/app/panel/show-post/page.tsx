@@ -1,13 +1,27 @@
-import { getUser } from "@/src/utils/api-call";
+"use client";
+import { DeleteButton } from "@/src/components/list-user/button";
+import Pagination from "@/src/components/shared/Pagination";
+import { getPost, getPosts, getUser } from "@/src/utils/api-call";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import style from "./page.module.css";
 
-const DeleteUser = async () => {
-  let res;
-  try {
-    res = await getUser();
-  } catch (error) {
-    console.log("error", error);
-    throw new Error("something went wrong");
-  }
+const ListUser = async () => {
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(0);
+
+  const getData = async (id: number) => {
+    let res = await getPosts(id);
+    setData(res);
+  };
+  useEffect(() => {
+    getData(0);
+  }, []);
+  const handleNext = async () => {
+    setPage((pre) => pre + 5);
+    getData(page + 5);
+  };
+
   return (
     <div className="relative shadow-md ml-10 mr-10 mt-5 rounded-sm">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -17,13 +31,13 @@ const DeleteUser = async () => {
               Id
             </th>
             <th scope="col" className="px-6 py-3">
-              Name
+              User Id
             </th>
             <th scope="col" className="px-6 py-3">
-              Username
+              Title
             </th>
             <th scope="col" className="px-6 py-3">
-              Email
+              Description
             </th>
             <th scope="col" className="px-6 py-3 text-right">
               Action
@@ -31,7 +45,7 @@ const DeleteUser = async () => {
           </tr>
         </thead>
         <tbody>
-          {res?.map((el: any) => (
+          {data?.map((el: any) => (
             <tr
               className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
               key={el?.id}
@@ -42,23 +56,24 @@ const DeleteUser = async () => {
               >
                 {el?.id}
               </th>
-              <td className="px-6 py-4">{el?.name}</td>
-              <td className="px-6 py-4">{el?.username}</td>
-              <td className="px-6 py-4">{el?.email}</td>
+              <td className="px-6 py-4">{el?.userId}</td>
+              <td className="px-6 py-4">{el?.title}</td>
+              <td className="px-6 py-4">{el?.body?.substring(0, 120)}</td>
               <td className="px-6 py-4 text-right">
-                <a
-                  href="#"
+                <Link
+                  href={`/panel/show-post/${el?.id}`}
                   className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                 >
-                  Delete
-                </a>
+                  View
+                </Link>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <Pagination handleNext={handleNext} />
     </div>
   );
 };
 
-export default DeleteUser;
+export default ListUser;

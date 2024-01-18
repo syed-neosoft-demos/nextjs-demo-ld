@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import styles from "../auth.module.css";
 
@@ -13,21 +13,12 @@ const Login = () => {
   const handleLogin = () => {
     setLoader(true);
     localStorage.setItem("auth_token", token);
+    const allCookies = document.cookie;
+    console.log("allCookies", allCookies);
+    document.cookie = `auth_token=${token}; Secure;  Path=/;`;
     route.replace("/panel/home");
   };
 
-  // const handleSetCookies = () => {
-  //   cookies().set("auth_token", token);
-  //   // // or
-  //   // cookies().set("name", "lee", { secure: true });
-  //   // // or
-  //   // cookies().set({
-  //   //   name: "name",
-  //   //   value: "lee",
-  //   //   httpOnly: true,
-  //   //   path: "/",
-  //   // });
-  // };
   return (
     <div className={styles.loginCard}>
       <h5>Login to your account</h5>

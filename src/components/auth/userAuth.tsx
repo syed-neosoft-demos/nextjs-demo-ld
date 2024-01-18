@@ -5,10 +5,10 @@ import { redirect } from "next/navigation";
 
 export default function isAuth(Component: any) {
   return function IsAuth(props: any) {
-    const cookieStore = cookies();
-    console.log("cookieStore", cookieStore.get("auth_token"));
+    const allCookies = cookies();
+    console.log("cookieStore", allCookies.get("auth_token"));
 
-    if (!cookieStore.get("auth_token")) return redirect("/");
+    if (!allCookies.get("auth_token")) return redirect("/");
 
     return <Component {...props} />;
   };

@@ -1,6 +1,8 @@
-import { cookies } from "next/headers";
+"use client";
 
 export const removeAllCookies = () => {
-  const cookiesStore = cookies();
-  cookiesStore.delete("auth_token");
+  document.cookie = "auth_token=; Path=/;";
+};
+export const removeAllLocalStorage = () => {
+  localStorage.clear();
 };
