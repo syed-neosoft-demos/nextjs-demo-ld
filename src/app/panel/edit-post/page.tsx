@@ -1,7 +1,30 @@
-import { getUser } from "@/src/utils/api-call";
+"use client";
+
+import Pagination from "@/src/components/shared/Pagination";
+import { getPosts } from "@/src/utils/api-call";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const EditUser = async () => {
-  const res = await getUser();
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(0);
+
+  const getData = async (id: number) => {
+    let res = await getPosts(id);
+    setData(res);
+  };
+  useEffect(() => {
+    getData(0);
+  }, []);
+  const handleNext = async () => {
+    setPage((pre) => pre + 5);
+    getData(page + 5);
+  };
+  const handlePrevious = async () => {
+    if (page <= 0) return;
+    setPage((pre) => pre - 5);
+    getData(page - 5);
+  };
   return (
     <div className="relative shadow-md ml-10 mr-10 mt-5 rounded-sm">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -11,13 +34,13 @@ const EditUser = async () => {
               Id
             </th>
             <th scope="col" className="px-6 py-3">
-              Name
+              User Id
             </th>
             <th scope="col" className="px-6 py-3">
-              Username
+              Title
             </th>
             <th scope="col" className="px-6 py-3">
-              Email
+              Description
             </th>
             <th scope="col" className="px-6 py-3 text-right">
               Action
@@ -25,7 +48,7 @@ const EditUser = async () => {
           </tr>
         </thead>
         <tbody>
-          {res?.map((el: any) => (
+          {data?.map((el: any) => (
             <tr
               className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
               key={el?.id}
@@ -36,21 +59,22 @@ const EditUser = async () => {
               >
                 {el?.id}
               </th>
-              <td className="px-6 py-4">{el?.name}</td>
-              <td className="px-6 py-4">{el?.username}</td>
-              <td className="px-6 py-4">{el?.email}</td>
+              <td className="px-6 py-4">{el?.userId}</td>
+              <td className="px-6 py-4">{el?.title}</td>
+              <td className="px-6 py-4">{el?.body?.substring(0, 100)}</td>
               <td className="px-6 py-4 text-right">
-                <a
-                  href="#"
+                <Link
+                  href={`/panel/edit-post/${el?.id}`}
                   className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                 >
                   Edit
-                </a>
+                </Link>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <Pagination handleNext={handleNext} handlePrevious={handlePrevious} />
     </div>
   );
 };
