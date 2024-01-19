@@ -1,14 +1,14 @@
 "use client";
 
 import { Error, Success } from "@/src/components/shared/toast";
-import { createPost, getPost, getUser, updatePost } from "@/src/utils/panel-api";
+import { getPost, updatePost } from "@/src/utils/panel-api";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 type Props = {
   params: { postId: string };
 };
-const page = async ({ params }: Props) => {
+const EditUser = async ({ params }: Props) => {
   const [loader, setLoader] = useState(false);
   const [payload, setPayload] = useState({
     title: "",
@@ -96,4 +96,4 @@ const page = async ({ params }: Props) => {
   );
 };
 
-export default page;
+export default EditUser;

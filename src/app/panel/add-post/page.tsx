@@ -5,7 +5,7 @@ import { createPost } from "@/src/utils/panel-api";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-const page = () => {
+const AddUser = () => {
   const [loader, setLoader] = useState(false);
   const [payload, setPayload] = useState({
     title: "",
@@ -85,4 +85,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default AddUser;
