@@ -1,7 +1,7 @@
 "use client";
 
 import { Error, Success } from "@/src/components/shared/toast";
-import { createPost } from "@/src/utils/api-call";
+import { createPost } from "@/src/utils/panel-api";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
