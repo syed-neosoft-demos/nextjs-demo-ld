@@ -1,8 +1,7 @@
 "use client";
-import { getPost, getUser } from "@/src/utils/api-call";
 
 import { Error, Success } from "@/src/components/shared/toast";
-import { createPost } from "@/src/utils/api-call";
+import { createPost, getPost, getUser, updatePost } from "@/src/utils/panel-api";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -13,7 +12,9 @@ const page = async ({ params }: Props) => {
   const [loader, setLoader] = useState(false);
   const [payload, setPayload] = useState({
     title: "",
-    description: "",
+    body: "",
+    id: "",
+    userId: "",
   });
 
   const handleInput = (elem: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,12 +23,12 @@ const page = async ({ params }: Props) => {
   };
 
   const handleCreate = async () => {
-    if (!payload.title || !payload.description)
+    if (!payload.title || !payload.body)
       return toast.custom(<Error message="please fill all required fields" />);
     setLoader(true);
     console.log("payload", payload);
-    const res = await createPost(JSON.stringify(payload));
-    toast.custom(<Success message="Post successfully created" />);
+    const res = await updatePost(payload);
+    toast.custom(<Success message="Post successfully updated" />);
     console.log("res", res);
     setLoader(false);
   };
@@ -35,7 +36,7 @@ const page = async ({ params }: Props) => {
     const post = async () => {
       const res = await getPost(params?.postId);
       console.log("res", res);
-      setPayload({ title: res?.title, description: res?.body });
+      setPayload({ ...res, body: res?.body });
     };
     post();
   }, [params?.postId]);
@@ -72,8 +73,8 @@ const page = async ({ params }: Props) => {
                 <input
                   type="text"
                   id="description"
-                  name="description"
-                  value={payload.description}
+                  name="body"
+                  value={payload.body}
                   onChange={(el) => handleInput(el)}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-2"
                 ></input>

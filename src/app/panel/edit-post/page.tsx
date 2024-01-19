@@ -1,7 +1,7 @@
 "use client";
 
 import Pagination from "@/src/components/shared/Pagination";
-import { getPosts } from "@/src/utils/api-call";
+import { getPosts } from "@/src/utils/panel-api";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 

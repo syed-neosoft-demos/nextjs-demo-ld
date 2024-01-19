@@ -1,10 +1,9 @@
 "use client";
-import { DeleteButton } from "@/src/components/list-user/button";
+
 import Pagination from "@/src/components/shared/Pagination";
-import { getPost, getPosts, getUser } from "@/src/utils/api-call";
+import { getPost, getPosts, getUser } from "@/src/utils/panel-api";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import style from "./page.module.css";
 
 const ListUser = async () => {
   const [data, setData] = useState([]);
@@ -21,7 +20,11 @@ const ListUser = async () => {
     setPage((pre) => pre + 5);
     getData(page + 5);
   };
-
+  const handlePrevious = async () => {
+    if (page <= 0) return;
+    setPage((pre) => pre - 5);
+    getData(page - 5);
+  };
   return (
     <div className="relative shadow-md ml-10 mr-10 mt-5 rounded-sm">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -71,7 +74,7 @@ const ListUser = async () => {
           ))}
         </tbody>
       </table>
-      <Pagination handleNext={handleNext} />
+      <Pagination handleNext={handleNext} handlePrevious={handlePrevious} />
     </div>
   );
 };

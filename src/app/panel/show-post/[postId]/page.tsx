@@ -1,4 +1,4 @@
-import { getPost, getUser } from "@/src/utils/api-call";
+import { getPost, getUser } from "@/src/utils/panel-api";
 
 type Props = {
   params: { postId: string };
