@@ -13,10 +13,16 @@ export async function getUser(id: number) {
   return res.json();
 }
 
-export async function getPosts(id: number) {
-  const res = await fetch(
-    `https://jsonplaceholder.typicode.com/posts?_start=${id ?? 0}&_limit=5`
-  );
+export async function getPosts(id: number, userId?: number) {
+  let url = "";
+  if (userId) {
+    url = `https://jsonplaceholder.typicode.com/posts?_start=${
+      id ?? 0
+    }&_limit=5&userId=${userId}`;
+  } else {
+    url = `https://jsonplaceholder.typicode.com/posts?_start=${id ?? 0}&_limit=5`;
+  }
+  const res = await fetch(url);
   if (!res.ok) {
     throw new Error("Failed to fetch user data");
   }

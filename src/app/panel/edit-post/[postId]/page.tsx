@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 type Props = {
   params: { postId: string };
 };
-const EditUser = async ({ params }: Props) => {
+const EditUser = ({ params }: Props) => {
   const [loader, setLoader] = useState(false);
   const [payload, setPayload] = useState({
     title: "",

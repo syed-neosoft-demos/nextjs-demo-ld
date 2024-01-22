@@ -5,7 +5,7 @@ import { getPosts } from "@/src/utils/panel-api";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const EditUser = async () => {
+const EditUser = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
 

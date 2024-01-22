@@ -3,15 +3,18 @@
 import Pagination from "@/src/components/shared/Pagination";
 import { getPosts } from "@/src/utils/panel-api";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
-const ListUser = async () => {
+const ListUser = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState<any>();
 
-  const getData = async (id: number) => {
-    let res = await getPosts(id);
+  const getData = async (id: number, userId?: number) => {
+    let res: [];
+    if (userId) {
+      res = await getPosts(id, userId);
+    } else res = await getPosts(id);
     setData(res);
   };
 
@@ -29,11 +32,12 @@ const ListUser = async () => {
   }, []);
 
   useEffect(() => {
-    const time = setTimeout(() => {
-      setSearch("hello");
-      console.log("call");
+    const timeout = setTimeout(() => {
+      if (search) {
+        getData(page, search);
+      }
     }, 500);
-    return () => clearTimeout(time);
+    return () => clearTimeout(timeout);
   }, [search]);
 
   return (
@@ -73,30 +77,32 @@ const ListUser = async () => {
           </tr>
         </thead>
         <tbody>
-          {data?.map((el: any) => (
-            <tr
-              className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-              key={el?.id}
-            >
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                {el?.id}
-              </th>
-              <td className="px-6 py-4">{el?.userId}</td>
-              <td className="px-6 py-4">{el?.title}</td>
-              <td className="px-6 py-4">{el?.body?.substring(0, 120)}</td>
-              <td className="px-6 py-4 text-right">
-                <Link
-                  href={`/panel/show-post/${el?.id}`}
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+          {data?.length > 0
+            ? data?.map((el: any) => (
+                <tr
+                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                  key={el?.id}
                 >
-                  View
-                </Link>
-              </td>
-            </tr>
-          ))}
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    {el?.id}
+                  </th>
+                  <td className="px-6 py-4">{el?.userId}</td>
+                  <td className="px-6 py-4">{el?.title}</td>
+                  <td className="px-6 py-4">{el?.body?.substring(0, 120)}</td>
+                  <td className="px-6 py-4 text-right">
+                    <Link
+                      href={`/panel/show-post/${el?.id}`}
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      View
+                    </Link>
+                  </td>
+                </tr>
+              ))
+            : "No data found"}
         </tbody>
       </table>
       <Pagination handleNext={handleNext} handlePrevious={handlePrevious} />

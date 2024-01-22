@@ -6,7 +6,7 @@ import { deletePost, getPosts } from "@/src/utils/panel-api";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-const DeleteUser = async () => {
+const DeleteUser = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
 
