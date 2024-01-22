@@ -1,21 +1,20 @@
 "use client";
 
 import Pagination from "@/src/components/shared/Pagination";
-import { getPost, getPosts, getUser } from "@/src/utils/panel-api";
+import { getPosts } from "@/src/utils/panel-api";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const ListUser = async () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
+  const [search, setSearch] = useState("");
 
   const getData = async (id: number) => {
     let res = await getPosts(id);
     setData(res);
   };
-  useEffect(() => {
-    getData(0);
-  }, []);
+
   const handleNext = async () => {
     setPage((pre) => pre + 5);
     getData(page + 5);
@@ -25,8 +24,34 @@ const ListUser = async () => {
     setPage((pre) => pre - 5);
     getData(page - 5);
   };
+  useEffect(() => {
+    getData(0);
+  }, []);
+
+  useEffect(() => {
+    const time = setTimeout(() => {
+      setSearch("hello");
+      console.log("call");
+    }, 500);
+    return () => clearTimeout(time);
+  }, [search]);
+
   return (
     <div className="relative shadow-md ml-10 mr-10 mt-5 rounded-sm">
+      <div className="bg-white">
+        <label htmlFor="title" className="block text-sm font-medium leading-6 text-gray-900" />
+        <div className="mt-2">
+          <input
+            type="text"
+            name="title"
+            id="title"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search by user id"
+            className="block w-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-2"
+          />
+        </div>
+      </div>
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>

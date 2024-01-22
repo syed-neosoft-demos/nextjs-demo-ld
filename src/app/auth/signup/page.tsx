@@ -1,6 +1,11 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import styles from "../auth.module.css";
 
+export const metadata: Metadata = {
+  title: "Signup Page",
+  description: "next.js l&d app, auth login page ",
+};
 const Signup = () => {
   return (
     <div className={styles.loginCard}>

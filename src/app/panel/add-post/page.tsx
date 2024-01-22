@@ -24,8 +24,11 @@ const AddUser = () => {
     console.log("payload", payload);
     const res = await createPost(JSON.stringify(payload));
     toast.custom(<Success message="Post successfully created" />);
-    console.log("res", res);
     setLoader(false);
+    setPayload({
+      title: "",
+      description: "",
+    });
   };
   return (
     <div className="bg-white p-4 m-10">

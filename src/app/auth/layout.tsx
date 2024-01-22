@@ -1,4 +1,10 @@
+import { Metadata } from "next";
 import styles from "./auth.module.css";
+
+export const metadata: Metadata = {
+  title: "auth Page",
+  description: "next.js l&d app, auth login page ",
+};
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className={styles.authContainer}>
