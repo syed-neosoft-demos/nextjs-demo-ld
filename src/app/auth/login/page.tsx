@@ -1,16 +1,19 @@
 "use client";
 
 import { Error } from "@/src/components/shared/toast";
+import { UserContext } from "@/src/context/UserContext";
+import { userContextSchema } from "@/src/types/types";
 import { loginApi } from "@/src/utils/auth-api";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import styles from "../auth.module.css";
 
 const Login = () => {
   const [loader, setLoader] = useState(false);
   const route = useRouter();
+  const { setUser } = useContext(UserContext);
 
   const [payload, setPayload] = useState({
     email: "",
@@ -27,7 +30,11 @@ const Login = () => {
       return toast.custom(<Error message="please fill all required fields" />);
     }
     setLoader(true);
-    const res: any = await loginApi({ username: "kminchelle", password: "0lelplR" });
+    const res: userContextSchema = await loginApi({
+      username: "kminchelle",
+      password: "0lelplR",
+    });
+    setUser(res);
     localStorage.setItem("auth_token", res?.token);
     const allCookies = document.cookie;
     console.log("allCookies", allCookies);

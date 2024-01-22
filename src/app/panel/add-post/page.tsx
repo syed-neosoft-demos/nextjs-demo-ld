@@ -1,11 +1,14 @@
 "use client";
 
 import { Error, Success } from "@/src/components/shared/toast";
+import { UserContext } from "@/src/context/UserContext";
 import { createPost } from "@/src/utils/panel-api";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 
 const AddUser = () => {
+  const { user } = useContext(UserContext);
+  console.log("user.", user);
   const [loader, setLoader] = useState(false);
   const [payload, setPayload] = useState({
     title: "",
